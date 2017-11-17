@@ -9,6 +9,7 @@ const TiledMap = require('TiledMap');
 let Graphics = new function () {
 
     const app = new PIXI.Application();
+    PIXI.loader.use(TiledMap.middleware);
     let renderer = null;
 
     let init = function(initStage){
