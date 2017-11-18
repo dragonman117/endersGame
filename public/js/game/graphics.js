@@ -4,6 +4,7 @@
  **/
 
 import {TiledMap} from "/js/lib/TiledMap.js";
+import {Sprite} from "/js/lib/Sprite.js";
 
 
 let Graphics = new function () {
@@ -29,9 +30,16 @@ let Graphics = new function () {
         app.renderer.render(incomingStage);
     };
 
+    let genSprite = function(name, x, y){
+        let tmp = Sprite(name);
+        tmp.updatePosition(x, y);
+        return tmp;
+    };
+
     return {
         "init": init,
-        "renderStage":renderStage
+        "renderStage":renderStage,
+        "genSprite":genSprite
     }
 }();
 export {Graphics};
