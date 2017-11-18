@@ -36,8 +36,8 @@ for (let i = 0; i < files.length; i++){
     loadString += `['${files[i].slice(0, extensionLength)}','/img/${files[i]}'],\n`;
 }
 for (let i = 0; i < files2.length; i++){
-  loadString += "  ";
   if(!(/(.json)$/.test(files2[i]))) continue;
+    loadString += "  ";
   loadString += `['${/(.+).json/.exec(files2[i])[1]}', '/js/maps/${files2[i]}']`;
   if(i < (files2.length-1)) loadString += ',\n';
 }
