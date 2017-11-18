@@ -11,6 +11,7 @@ let initGame = function () {
     let startStage = Stage.genStage();
     startStage.setMap("level-1.map");
     Graphics.init(startStage);
+    Graphics.drawGrid();
 };
 
 for(let i = 0; i < loader.length; i++){
