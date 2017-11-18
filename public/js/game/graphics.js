@@ -8,12 +8,12 @@ import {Sprite} from "/js/lib/Sprite.js";
 
 
 let Graphics = new function () {
-
+    let that = {};
     const app = new PIXI.Application();
     let renderer = null;
     PIXI.loader.use(TiledMap.middleware);
 
-    let init = function(initStage){
+    that.init = function(initStage){
         app.view.style.position="absolute";
         app.view.style.display = "block";
         // app.view.style.width = "100%";
@@ -26,20 +26,18 @@ let Graphics = new function () {
         app.start();
     };
 
-    let renderStage = function(incomingStage){
+    that.renderStage = function(incomingStage){
         app.renderer.render(incomingStage);
     };
 
-    let genSprite = function(name, x, y){
-        let tmp = Sprite(name);
-        tmp.updatePosition(x, y);
-        return tmp;
+    that.addSprite = function (sprite) {
+        app.stage.addChild(sprite);
     };
 
-    return {
-        "init": init,
-        "renderStage":renderStage,
-        "genSprite":genSprite
-    }
+    that.genSprite = function(name){
+        return Sprite(name, that);
+    };
+
+    return that;
 }();
 export {Graphics};
