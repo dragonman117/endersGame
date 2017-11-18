@@ -12,6 +12,7 @@ let initGame = function () {
     let startStage = Stage.genStage();
     startStage.setMap("level-1.map");
     Graphics.init(startStage);
+    Graphics.drawGrid();
 
     Game.init();
     requestAnimationFrame(Game.gameLoop);
