@@ -1,7 +1,6 @@
 let loader = [
-['battlefie','/img/battlefield.js']
-,['ce','/img/cell.js']
-,['creep','/img/creep.json']
-,['un','/img/unit.js']
-,['units','/img/units.json']
+['','/img/game']
+,['l','/img/levels']
+,['load','/img/loader.js']
+,['ob','/img/objects']
 ]; export { loader };

@@ -18,3 +18,5 @@ let Battlefield = function(){
 
     return that;
 }
+
+export { Battlefield };
