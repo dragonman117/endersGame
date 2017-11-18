@@ -25,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Buid our load cache
 let files = fs.readdirSync('public/img/');
 let files2 = fs.readdirSync('public/js/maps/');
+let files3 = fs.readdirSync('public/js/levels/');
 
 let file = fs.openSync('./public/js/toLoad.js', 'w');
 let loadString = 'let loader = [\n';
@@ -34,6 +35,10 @@ for (let i = 0; i < files.length; i++){
     loadString += "  ";
     let extensionLength = files[i].length > 4 && files[i].slice(-4) === '.png' ? -4 : -5;
     loadString += `['${files[i].slice(0, extensionLength)}','/img/${files[i]}'],\n`;
+}
+for(let i = 0; i < files3.length; i++){
+    loadString += "  ";
+    loadString += `['${/(.+).json/.exec(files3[i])[1]}', '/js/levels/${files3[i]}'],\n`;
 }
 for (let i = 0; i < files2.length; i++){
   if(!(/(.json)$/.test(files2[i]))) continue;
