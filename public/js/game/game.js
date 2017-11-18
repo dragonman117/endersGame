@@ -5,9 +5,9 @@ let Game = (function(){
     lastTime = 0,
     model;
 
-    that.init = function(){
+    that.init = function(logicModel){
         model = new Model();
-        model.init();
+        model.init(logicModel);
         lastTime = performance.now();
     }
 

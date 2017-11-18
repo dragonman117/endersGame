@@ -9,11 +9,13 @@ let Model = function(){
         graphics,
         battlefield,
         playerUnits = [],
-        creeps = [];
+        creeps = [],
+        logicalMap;
 
-    that.init = function(){
+    that.init = function(logicModel){
         //graphics = g;
         battlefield = Battlefield();
+        logicalMap = logicModel;
 
         let myUnit = UnitList["scout"];
         myUnit.position = { x: 24.0 * 128 + 64, y: 2.0 * 128 + 64};

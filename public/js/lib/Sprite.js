@@ -1,7 +1,6 @@
 
 
 let Sprite = function (fileName, graphics) {
-
     let sprite = new PIXI.Sprite(PIXI.loader.resources[fileName].texture);
 
     let updatePosition = function (x, y) {
