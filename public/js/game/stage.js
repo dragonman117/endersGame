@@ -3,39 +3,58 @@
  * Generates stages for the graphics class
  **/
 
-const PIXI = require('pixi.js');
-const TiledMap = require('TiledMap');
+let Stage = function () {
 
-let Stage = function (background) {
-    let paused = false;
-    let updateController = NaN;
+    let genStage = function () {
+        let paused = false;
+        let updateController = NaN;
 
-    let base = PIXI.Stage(background);
+        let base = new PIXI.Stage();
 
-    base.onUpdate = function(updateTrigger){
-        updateController = updateTrigger;
+        base.onUpdate = function(updateTrigger){
+            updateController = updateTrigger;
+        };
+
+        base.update = function(){
+            updateController();
+        };
+
+        base.pause = function(){
+            paused = true;
+        };
+
+        base.resume = function () {
+            paused = false;
+        };
+
+        base.isPaused = function () {
+            return paused;
+        };
+
+        base.setMap = function (mapKey) {
+            let resources = PIXI.loader.resources;
+            let raw = resources[mapKey].data;
+            console.log(raw);
+            let tilesets = resources[raw.spriteSheet].textures;
+            console.log(tilesets);
+            for(let i = 0; i < raw.map.length; i++){
+                for(let j = 0; j < raw.map[i].length; j++){
+                    for(let k = 0; k < raw.map[i][j].tiles.length; k++){
+                        let tile = new PIXI.Sprite(tilesets[raw.map[i][j].tiles[k]]);
+                        tile.x = j*128;
+                        tile.y = i*128 ;
+                        base.addChild(tile);
+                    }
+                }
+            }
+        };
+
+        return base;
     };
 
-    base.update = function(){
-        updateController();
-    };
+    return {
+        "genStage":genStage
+    }
+}();
 
-    base.pause = function(){
-        paused = true;
-    };
-
-    base.resume = function () {
-        paused = false;
-    };
-
-    base.isPaused = function () {
-        return paused;
-    };
-    
-    base.setMap = function (mapKey) {
-        let map = new TiledMap(mapKey);
-        base.addChild(map);
-    };
-
-    return base;
-};
+export {Stage}

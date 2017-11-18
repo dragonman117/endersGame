@@ -3,22 +3,31 @@
  *  A simple access point to our graphics
  **/
 
-const PIXI = require('pixi.js');
-const TiledMap = require('TiledMap');
+import {TiledMap} from "/js/lib/TiledMap.js";
 
 let Graphics = new function () {
 
     const app = new PIXI.Application();
-    PIXI.loader.use(TiledMap.middleware);
     let renderer = null;
+    PIXI.loader.use(TiledMap.middleware);
+
+    //For TEsting
+    PIXI.loader.add("128tileSet","/img/128tileSet.json");
+    PIXI.loader.add("TestMap", "/js/maps/first.map.json");
 
     let init = function(initStage){
-        document.body.appendChild(app.view);
         app.view.style.position="absolute";
         app.view.style.display = "block";
-        app.renderer.autoResize = true;
-        app.renderer.resize(window.innerWidth, window.innerHeight);
+        // app.view.style.width = "100%";
+        app.renderer = PIXI.autoDetectRenderer(
+            (48 * 128), (27*128),
+            {antialias: false, transparent: false, resolution: .5}
+        );
+        // app.renderer.view.style.height = "90vh";
+        // app.renderer.view.style.position = "absolute";
+        // app.renderer.view.style.display = "block";
         app.stage = initStage;
+        document.body.appendChild(app.renderer.view);
         app.start();
     };
 
@@ -30,4 +39,5 @@ let Graphics = new function () {
         "init": init,
         "renderStage":renderStage
     }
-};
+}();
+export {Graphics};

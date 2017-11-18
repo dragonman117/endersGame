@@ -24,6 +24,14 @@
         }],
  "nextobjectid":1,
  "orientation":"orthogonal",
+ "properties":
+    {
+     "spriteSheet":"128tileSet"
+    },
+ "propertytypes":
+    {
+     "spriteSheet":"string"
+    },
  "renderorder":"right-down",
  "tiledversion":"1.0.3",
  "tileheight":128,
