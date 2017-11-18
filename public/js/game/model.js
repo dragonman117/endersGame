@@ -3,11 +3,15 @@ import { Battlefield } from "../objects/battlefield"
 let Model = function(){
     let that = {},
         graphics,
-        battlefield;
+        battlefield,
+        playerUnits = [],
+        creeps = [];
 
     that.init = function(g){
         graphics = g;
         battlefield = Battlefield();
+
+
     }
 
     that.gameOver = function(){ return false; }
