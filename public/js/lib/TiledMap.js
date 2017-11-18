@@ -7,9 +7,9 @@ let TiledMap = function (mapPath) {
 
     let getImageObjects = function(tiles){
         let res = {};
-        for(let i = 0; i < Object.keys(tiles).length; i++){
-            // console.log(id);
-            res[i+1] = /\/([\w]+).png$/.exec(tiles[i].image)[1];
+        let keys = Object.keys(tiles);
+        for(let i = 0; i < keys.length; i++){
+            res[i+1] = /\/([\w]+).png$/.exec(tiles[keys[i]].image)[1];
         }
         return res;
     };
@@ -57,7 +57,8 @@ let TiledMap = function (mapPath) {
                 logical[i-1].push(tmp);
             }
         }
-        resource.data = {"spriteSheet":spriteSheet, "map":map};
+        console.log(map);
+        resource.data = {"spriteSheet":spriteSheet, "map":map, "logical":logical};
         next();
     };
 
