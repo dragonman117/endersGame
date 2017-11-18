@@ -1,10 +1,13 @@
+import { Graphics } from "/js/game/graphics.js"
+
 let Base = function(spec){
     let that = {},
         position = spec.position,
         direction = spec.direction,
-        sprite = spec.name,
+        sprite = Graphics.genSprite(spec.name),
         lastAttack = 0,
-        target = null;
+        target = null,
+        dead = false;
 
     that.move = function(speed){
         position.x += direction.x * speed;
@@ -15,10 +18,13 @@ let Base = function(spec){
         that.move(speed);
         lastAttack += elapsedTime;
         if(lastAttack > spec.attackSpeed && target !== null) that.attack();
+        sprite.updatePosition(position.x, position.y)
+        sprite.rotate(setRotation(direction));
     }
 
     that.takeHit = function(damage, effects){
-
+        spec.health -= damage;
+        if (spec.health < 0) dead = true;
     }
 
     that.changeDirection = function(lookAt){
@@ -41,9 +47,15 @@ let Base = function(spec){
 
     that.draw = function(){
         // graphics.drawSprite(sprite, position, direction);
-        sprite.draw();
+        sprite.updatePosition(position.x, position.y);
+        sprite.rotate(setRotation(direction));
     }
 
+    that.init = function(){
+        sprite.init(position.x, position.y, setRotation(direction));
+    }
+
+    that.isDead = function(){ return dead; }
 
     return that;
 }
@@ -55,3 +67,16 @@ function normalize(vec){
         y: vec.y / length
     }
 }
+
+function setRotation(direction){
+    if(direction.y === 0){
+        if(direction.x > 0) return -Math.PI / 2;
+        else return Math.PI / 2;
+    }
+    let rads = Math.atan(direction.x/direction.y);
+    if(direction.y < 0) rads += Math.PI;
+    rads = Math.PI * 2 - rads;
+    return rads;
+}
+
+export { Base };

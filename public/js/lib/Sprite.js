@@ -2,12 +2,12 @@
 
 let Sprite = function (fileName, graphics) {
 
-    let sprite = PIXI.loader.resources[filename].texture;
+    let sprite = new PIXI.Sprite(PIXI.loader.resources[fileName].texture);
 
     let updatePosition = function (x, y) {
         sprite.anchor.x = 0.0;
-        spirte.anchor.y = 0.0;
-        spirte.x = x;
+        sprite.anchor.y = 0.0;
+        sprite.x = x;
         sprite.y = y;
     };
 
