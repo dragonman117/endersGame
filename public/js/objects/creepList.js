@@ -1,4 +1,4 @@
-let creeps = {
+let CreepList = {
   "example": {
     "speed": 5,
     "health": 100,
@@ -15,7 +15,8 @@ let creeps = {
         "amount" : 1.3,
         "chance" : 0.1
       }
-    }
+    },
+      "name": "creep.example"
   },
     "scout": {
         "speed": 5,
@@ -24,8 +25,9 @@ let creeps = {
         "range": 250,
         "attackSpeed": 1,
         "levelFactor": 1.1,
-        "effects": {}
+        "effects": {},
+        "name": "creep.scout"
     }
 };
 
-export { creeps };
+export { CreepList };

@@ -1,4 +1,4 @@
-import { Model } from "model"
+import { Model } from "/js/game/model.js"
 
 let Game = (function(){
     let that = {},
@@ -7,17 +7,14 @@ let Game = (function(){
 
     that.init = function(){
         model = new Model();
-
+        model.init();
         lastTime = performance.now();
     }
 
     that.gameLoop = function(time){
         let timeDiff = time - lastTime;
         lastTime = time;
-
-
         that.update(timeDiff)
-
         if(!model.gameOver()) requestAnimationFrame(that.gameLoop);
     }
 
@@ -29,5 +26,11 @@ let Game = (function(){
         model.render(elapsedTime);
     }
 
+    that.update = function(elapsedTime){
+        model.update(elapsedTime);
+    }
+
     return that;
 })()
+
+export {Game};
