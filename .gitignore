@@ -34,6 +34,8 @@ cmake-build-debug/
 
 # IntelliJ
 out/
+.idea/*
+
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -108,3 +110,13 @@ typings/
 
 # dotenv environment variables file
 .env
+.DS_Store
+.idea/endersGame.iml
+.idea/inspectionProfiles/
+.idea/modules.xml
+assets/.DS_Store
+assets/Interface Pack/.DS_Store
+assets/Interface Pack/PNG/.DS_Store
+public/.DS_Store
+public/js/.DS_Store
+views/
