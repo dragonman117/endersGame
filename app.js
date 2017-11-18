@@ -4,9 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var fs = require('fs');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+
 
 var app = express();
 
@@ -22,8 +22,27 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
+//Buid our load cache
+let files = fs.readdirSync('public/img/');
+let files2 = fs.readdirSync('public/js/maps/');
+
+let file = fs.openSync('./public/js/toLoad.js', 'w');
+let loadString = 'let loader = [\n';
+for (let i = 0; i < files.length; i++){
+    // if(files[i].length > 11 && files[i].slice(-11) === ) continue;
+    if((/(.sprite.png)$/.test(files[i]))) continue;
+    loadString += "  ";
+    let extensionLength = files[i].length > 4 && files[i].slice(-4) === '.png' ? -4 : -5;
+    loadString += `['${files[i].slice(0, extensionLength)}','/img/${files[i]}'],\n`;
+}
+for (let i = 0; i < files2.length; i++){
+  loadString += "  ";
+  if(!(/(.json)$/.test(files2[i]))) continue;
+  loadString += `['${/(.+).json/.exec(files2[i])[1]}', '/js/maps/${files2[i]}']`;
+  if(i < (files2.length-1)) loadString += ',\n';
+}
+loadString += '\n]; \nexport { loader };';
+fs.writeSync(file, loadString);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -42,5 +61,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;

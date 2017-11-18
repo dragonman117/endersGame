@@ -4,16 +4,14 @@
  **/
 
 import {TiledMap} from "/js/lib/TiledMap.js";
+import {Sprite} from "/js/lib/Sprite.js";
+
 
 let Graphics = new function () {
 
     const app = new PIXI.Application();
     let renderer = null;
     PIXI.loader.use(TiledMap.middleware);
-
-    //For TEsting
-    PIXI.loader.add("128tileSet","/img/128tileSet.json");
-    PIXI.loader.add("TestMap", "/js/maps/first.map.json");
 
     let init = function(initStage){
         app.view.style.position="absolute";
@@ -23,9 +21,6 @@ let Graphics = new function () {
             (48 * 128), (27*128),
             {antialias: false, transparent: false, resolution: .5}
         );
-        // app.renderer.view.style.height = "90vh";
-        // app.renderer.view.style.position = "absolute";
-        // app.renderer.view.style.display = "block";
         app.stage = initStage;
         document.body.appendChild(app.renderer.view);
         app.start();
@@ -35,9 +30,16 @@ let Graphics = new function () {
         app.renderer.render(incomingStage);
     };
 
+    let genSprite = function(name, x, y){
+        let tmp = Sprite(name);
+        tmp.updatePosition(x, y);
+        return tmp;
+    };
+
     return {
         "init": init,
-        "renderStage":renderStage
+        "renderStage":renderStage,
+        "genSprite":genSprite
     }
 }();
 export {Graphics};

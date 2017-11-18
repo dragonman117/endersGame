@@ -44,6 +44,20 @@ let TiledMap = function (mapPath) {
         for(let i = 0; i < Object.keys(raw.layers).length; i++){
             map = buildGrid(map, raw.layers[i].data, tiles);
         }
+        let logical = [];
+        for(let i = 1; i < 26+1; i++){
+            logical.push([]);
+            for (let j = 11; j < (11 + 26); j++){
+                let tmp = JSON.parse(JSON.stringify(map[i][j]));
+                if(tmp.tiles.length > 2){
+                    tiles.state = "invalid";
+                }else{
+                    tiles.state = "open";
+                }
+                logical[i-1].push(tmp);
+            }
+        }
+        console.log(logical);
         resource.data = {"spriteSheet":spriteSheet, "map":map};
         next();
     };
