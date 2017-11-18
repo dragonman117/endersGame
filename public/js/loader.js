@@ -14,7 +14,7 @@ let initGame = function () {
     Graphics.init(startStage);
     Graphics.drawGrid();
 
-    Game.init();
+    Game.init(Graphics.getLogical());
     requestAnimationFrame(Game.gameLoop);
 };
 
