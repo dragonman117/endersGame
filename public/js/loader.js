@@ -9,7 +9,7 @@ import {loader} from "/js/toLoad.js";
 
 let initGame = function () {
     let startStage = Stage.genStage();
-    startStage.setMap("first.map");
+    startStage.setMap("level-1.map");
     Graphics.init(startStage);
 };
 

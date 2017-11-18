@@ -30,7 +30,7 @@ let TiledMap = function (mapPath) {
     let middleware = function(resource, next){
         if (!(/(.map.json)$/.test(resource.url))) return next();
         let raw = resource.data;
-        let spriteSheet = raw.properties.spriteSheet;
+        let spriteSheet = /(.+).map$/.exec(resource.name)[1];
         let tiles = getImageObjects(raw.tilesets[0].tiles);
         let w = raw.width;
         let h = raw.height;
@@ -57,7 +57,6 @@ let TiledMap = function (mapPath) {
                 logical[i-1].push(tmp);
             }
         }
-        console.log(logical);
         resource.data = {"spriteSheet":spriteSheet, "map":map};
         next();
     };
