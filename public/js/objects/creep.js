@@ -27,7 +27,8 @@ let Creep = function(spec){
             effects: spec.creep.effects,
             direction: spec.direction,
             attackSpeed: spec.creep.attackSpeed,
-            name: spec.creep.name
+            name: spec.creep.name,
+            unitName: "I'm a creep",
         });
 
     that.update = function(elapsedTime){

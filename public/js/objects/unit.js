@@ -11,13 +11,14 @@ import {Base} from "/js/game/base.js"
 //     range:,
 //     effects:,
 //     attackSpeed:,
-//     name:
+//     name:,
+//     unitName:
 // }
 
 let Unit = function(spec){
     let that = {},
         speed = spec.speed,
-        status = ["notMoving"],
+        status = [],
         destination,
         base = Base({
             position: spec.position,
@@ -27,7 +28,8 @@ let Unit = function(spec){
             range: spec.range,
             effects: spec.effects,
             attackSpeed: spec.attackSpeed,
-            name: spec.name
+            name: spec.name,
+            unitName: spec.unitName
     });
 
     that.update = function(elapsedTime){
@@ -63,6 +65,10 @@ let Unit = function(spec){
     }
 
     that.isDead = function(){ return base.isDead(); }
+
+    that.setName = function(){ base.setName(); }
+
+    that.getName = function(){ base.getName(); }
 
     return that;
 };

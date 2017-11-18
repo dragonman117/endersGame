@@ -7,6 +7,7 @@ let Base = function(spec){
         sprite = Graphics.genSprite(spec.name),
         lastAttack = 0,
         target = null,
+        unitName = spec.unitName,
         dead = false;
 
     that.move = function(speed){
@@ -56,6 +57,9 @@ let Base = function(spec){
     }
 
     that.isDead = function(){ return dead; }
+
+    that.setName = function(name){ unitName = name; }
+    that.getName = function() { return unitName; }
 
     return that;
 }

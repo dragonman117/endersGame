@@ -18,10 +18,13 @@ let Model = function(){
         let myUnit = UnitList["scout"];
         myUnit.position = { x: 24.0 * 128 + 64, y: 2.0 * 128 + 64};
         myUnit.direction = { x: 1, y: 0};
+        myUnit.unitName = "Josh";
 
         playerUnits.push(Unit(myUnit));
         myUnit.direction = { x: 2, y: -1};
         myUnit.position = { x:24.0 * 128 +64, y: 3.0 * 128 + 64};
+        myUnit.unitName = "TJ";
+
         playerUnits.push(Unit(myUnit));
 
         playerUnits[0].init();
