@@ -14,6 +14,7 @@
 //     position:,
 //     direction:
 // }
+import { Unit } from "/js/objects/unit.js"
 
 let Creep = function(spec){
     let that = {},
@@ -25,7 +26,9 @@ let Creep = function(spec){
             range: spec.creep.range,
             effects: spec.creep.effects,
             direction: spec.direction,
-            attackSpeed: spec.creep.attackSpeed
+            attackSpeed: spec.creep.attackSpeed,
+            name: spec.creep.name,
+            unitName: "I'm a creep",
         });
 
     that.update = function(elapsedTime){
@@ -48,6 +51,12 @@ let Creep = function(spec){
     that.takeHit = function(damage, effects) {
         unit.takeHit(damage, effects);
     }
+
+    that.init = function(){
+        unit.init();
+    }
+
+    that.isDead = function(){ return unit.isDead(); }
 
     return that;
 }

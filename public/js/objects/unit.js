@@ -1,4 +1,5 @@
-import { MovementEffects } from "./effects"
+import { MovementEffects } from "/js/objects/effects.js"
+import {Base} from "/js/game/base.js"
 
 // Spec object to initialize a unit
 // {
@@ -9,7 +10,9 @@ import { MovementEffects } from "./effects"
 //     damage:,
 //     range:,
 //     effects:,
-//     attackSpeed:
+//     attackSpeed:,
+//     name:,
+//     unitName:
 // }
 
 let Unit = function(spec){
@@ -24,7 +27,9 @@ let Unit = function(spec){
             damage: spec.damage,
             range: spec.range,
             effects: spec.effects,
-            attackSpeed: spec.attackSpeed
+            attackSpeed: spec.attackSpeed,
+            name: spec.name,
+            unitName: spec.unitName
     });
 
     that.update = function(elapsedTime){
@@ -36,7 +41,7 @@ let Unit = function(spec){
         }
         base.update(elapsedTime, speed * modifier);
         let curPos = base.reportPosition();
-        if(posAreSame(curPos, destination)){
+        if(status.indexOf("notMoving") < 0 && destination && posAreSame(curPos, destination)){
             status.push("notMoving");
             destination = null;
         }
@@ -55,10 +60,22 @@ let Unit = function(spec){
         base.takeHit(damage, effects);
     }
 
+    that.init = function(){
+        base.init();
+    }
+
+    that.isDead = function(){ return base.isDead(); }
+
+    that.setName = function(){ base.setName(); }
+
+    that.getName = function(){ base.getName(); }
+
     return that;
-}
+};
 
 function posAreSame(p1,p2){
     let distance = Math.sqrt((p2.x-p1.x)**2 + (p2.y-p1.y)**2)
     return distance < 5;
-}
+};
+
+export { Unit };

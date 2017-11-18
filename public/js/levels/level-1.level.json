@@ -1,0 +1,19 @@
+{
+  "oponentGate":[
+    "M26"
+  ],
+  "creepPaths":[
+    [
+      "M26","M25","M24","M23","M22","M21","M20","M19","N19","019","P19","Q19","R19","S19","S18","S17","S16","S15","S14",
+      "S13","S12","S11","S10","S9","R9","Q9","P9","O9","N9","M9","L9","K9","J9","I9","H9","G9","G8","G7","G6","G5","G4",
+      "H4","I4", "J4", "K4","L4", "M4","N4","N3","N2","N1"
+    ]
+  ],
+  "spawnRate": 1,
+  "creepSpawns":[
+    [{"creep":"placeholder1", "count":4},{"creep":"placeholder2", "count":2},{"creep":"placeholder1", "count":4}]
+  ],
+  "playerGate":[
+    "N1"
+  ]
+}
