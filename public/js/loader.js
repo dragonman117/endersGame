@@ -8,7 +8,6 @@ import {Stage} from "/js/game/stage.js";
 import {loader} from "/js/toLoad.js";
 
 let initGame = function () {
-    console.log("I ran");
     let startStage = Stage.genStage();
     startStage.setMap("level-1.map");
     Graphics.init(startStage);

@@ -14,7 +14,6 @@ let Graphics = new function () {
     PIXI.loader.use(TiledMap.middleware);
 
     let init = function(initStage){
-        console.log(initStage);
         app.view.style.position="absolute";
         app.view.style.display = "block";
         // app.view.style.width = "100%";

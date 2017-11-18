@@ -9,7 +9,7 @@ let TiledMap = function (mapPath) {
         let res = {};
         let keys = Object.keys(tiles);
         for(let i = 0; i < keys.length; i++){
-            res[i+1] = /\/([\w]+).png$/.exec(tiles[keys[i]].image)[1];
+            res[parseInt(keys[i])+1] = /\/([\w]+).png$/.exec(tiles[keys[i]].image)[1];
         }
         return res;
     };
@@ -57,7 +57,6 @@ let TiledMap = function (mapPath) {
                 logical[i-1].push(tmp);
             }
         }
-        console.log(map);
         resource.data = {"spriteSheet":spriteSheet, "map":map, "logical":logical};
         next();
     };

@@ -35,7 +35,6 @@ let Stage = function () {
             let resources = PIXI.loader.resources;
             let raw = resources[mapKey].data;
             let tilesets = resources[raw.spriteSheet].textures;
-            console.log(tilesets);
             for(let i = 0; i < raw.map.length; i++){
                 for(let j = 0; j < raw.map[i].length; j++){
                     for(let k = 0; k < raw.map[i][j].tiles.length; k++){
@@ -46,7 +45,6 @@ let Stage = function () {
                     }
                 }
             }
-            console.log("fin");
         };
 
         return base;
