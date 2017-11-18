@@ -1,6 +1,6 @@
 
 
-let Sprite = function (fileName) {
+let Sprite = function (fileName, graphics) {
 
     let sprite = PIXI.loader.resources[filename].texture;
 
@@ -19,9 +19,16 @@ let Sprite = function (fileName) {
         sprite.rotation = fullRotationValue;
     };
 
+    let init = function (x, y, rotation) {
+        updatePosition(x, y);
+        rotate(rotation);
+        graphics.addSprite(sprite);
+    };
+
     return {
         "updatePosition":updatePosition,
-        "rotate":rotate
+        "rotate":rotate,
+        "init":init
     };
 };
 
