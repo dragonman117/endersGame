@@ -1,20 +1,19 @@
-import { Battlefield } from "/js/objects/battlefield.js"
 import { UnitList } from "/js/objects/unitList.js"
 import { Unit } from "/js/objects/unit.js"
 import { Creep } from "/js/objects/creep.js"
 import { CreepList } from "/js/objects/creepList.js"
+import { Commands} from "/js/game/control.js"
 
 let Model = function(){
     let that = {},
-        graphics,
-        battlefield,
+        command,
         playerUnits = [],
         creeps = [],
         logicalMap;
 
+
     that.init = function(logicModel){
-        //graphics = g;
-        battlefield = Battlefield();
+         command = Commands();
         logicalMap = logicModel;
 
         let myUnit = UnitList["scout"];

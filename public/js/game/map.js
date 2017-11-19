@@ -36,9 +36,9 @@ let Map = function (logical, levelName) {
 
     let parseGate = function () {
         let gate = [];
-        for(let i = 0; i < level.oponentGate.length; i++){
+        for(let i = 0; i < level.opponentGate.length; i++){
             let specGate = {};
-            specGate.location = level.oponentGate[i];
+            specGate.location = level.opponentGate[i];
             specGate.path = level.creepPaths[i];
             specGate.spawn = level.creepSpawns[i];
             gate.push(specGate);
@@ -46,7 +46,7 @@ let Map = function (logical, levelName) {
         return gate;
     };
 
-    let getOponentGates = function () {
+    let getOpponentGates = function () {
         return openentGates;
     };
 
@@ -77,7 +77,7 @@ let Map = function (logical, levelName) {
         "getMap":getMap,
         "getState":getState,
         "setState":setState,
-        "getOponentGates":getOponentGates,
+        "getOpponentGates":getOpponentGates,
         "getPlayerGates":getPlayerGates,
         "getSpawnRate":getSpawnRate,
         "setOccupied":setOccupied,
