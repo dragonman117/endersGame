@@ -1,19 +1,17 @@
-import { Battlefield } from "/js/objects/battlefield.js"
 import { UnitList } from "/js/objects/unitList.js"
 import { Unit } from "/js/objects/unit.js"
 import { Creep } from "/js/objects/creep.js"
 import { CreepList } from "/js/objects/creepList.js"
+import { Commands} from "/js/game/control.js"
 
 let Model = function(){
     let that = {},
-        graphics,
-        battlefield,
+        command,
         playerUnits = [],
         creeps = [];
 
     that.init = function(){
-        //graphics = g;
-        battlefield = Battlefield();
+        command = Commands();
 
         let myUnit = UnitList["scout"];
         myUnit.position = { x: 24.0 * 128 + 64, y: 2.0 * 128 + 64};
