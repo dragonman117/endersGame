@@ -8,10 +8,13 @@ let Model = function(){
     let that = {},
         command,
         playerUnits = [],
-        creeps = [];
+        creeps = [],
+        logicalMap;
 
-    that.init = function(){
-        command = Commands();
+
+    that.init = function(logicModel){
+         command = Commands();
+        logicalMap = logicModel;
 
         let myUnit = UnitList["scout"];
         myUnit.position = { x: 24.0 * 128 + 64, y: 2.0 * 128 + 64};

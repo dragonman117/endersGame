@@ -99,6 +99,10 @@ let Graphics = new function () {
         }
     };
 
+    that.getLogical = function () {
+        return app.stage.logical;
+    };
+
     return that;
 }();
 export {Graphics};

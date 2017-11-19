@@ -58,6 +58,18 @@ let Map = function (logical, levelName) {
         return level.spawnRate;
     };
 
+    let setOccupied = function (owner, gridPos) {
+        pos = getLogicalPos(gridPos);
+        logicalRepresentation[pos[0]][pos[1]].owner = owner;
+        logicalRepresentation[pos[0]][pos[1]].state = "full";
+    };
+
+    let setEmpty = function (gridPos) {
+        pos = getLogicalPos(gridPos);
+        logicalRepresentation[pos[0]][pos[1]].owner = "";
+        logicalRepresentation[pos[0]][pos[1]].state = "open";
+    };
+
     openentGates = parseGate();
     playerGates = level.playerGate;
     return {
@@ -67,7 +79,9 @@ let Map = function (logical, levelName) {
         "setState":setState,
         "getOpponentGates":getOpponentGates,
         "getPlayerGates":getPlayerGates,
-        "getSpawnRate":getSpawnRate
+        "getSpawnRate":getSpawnRate,
+        "setOccupied":setOccupied,
+        "setEmpty":setEmpty
     }
 };
 export {Map}

@@ -54,6 +54,7 @@ let TiledMap = function (mapPath) {
                 }else{
                     tiles.state = "open";
                 }
+                tmp.ownder = "";
                 logical[i-1].push(tmp);
             }
         }
