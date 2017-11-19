@@ -2,15 +2,61 @@ import { UnitList } from "/js/objects/unitList.js"
 import { Unit } from "/js/objects/unit.js"
 import { Creep } from "/js/objects/creep.js"
 import { CreepList } from "/js/objects/creepList.js"
-import { Commands} from "/js/game/control.js"
+import { ControlModule } from "/js/game/io/control.js"
+import { Commands } from "/js/game/control.js"
 
 let Model = function(){
     let that = {},
         command,
-        playerUnits = [],
-        creeps = [],
+        unitList = [],
+        creepList = [],
+        towerList = [],
         logicalMap;
 
+
+    that.initCommands = function () {
+      ControlModule.onMoveCommand((data) => {
+        let name = data.name;
+        let position = logicalMap.gridToPixel(data.col + "" + data.row);
+        Commands.move(
+          {
+            name: name,
+            position: {
+              x: position[0],
+              y: position[1]
+            }
+          },
+          unitList
+        );
+      });
+
+      ControlModule.onSetUnitNameEvent((data) => {
+        Commands.setName(
+          {
+            name: data.name,
+            newName: data.newName
+          },
+          unitList
+        );
+      });
+
+      ControlModule.onPlaceUnitEvent((data) => {
+        let position = logicalMap.gridToPixel(data.col + "" + data.row);
+        Commands.createUnit(
+          {
+            name: data.name,
+            position: {
+              x: position[0],
+              y: position[1]
+            }
+          },
+          unitList
+        );
+      });
+
+
+
+    };
 
     that.init = function(logicModel){
          command = Commands();
@@ -34,6 +80,8 @@ let Model = function(){
         let myCreep = CreepList["scout"];
         creeps.push(Creep({creep: myCreep, position:{x:23.0 * 128 + 64, y: 22.0 * 128 + 64}, direction: {x: -1, y: -1}}))
         creeps[0].init();
+
+        that.initCommands();
     }
 
     that.gameOver = function(){ return false; }

@@ -16,12 +16,26 @@
             margin: 0 8vw;
             width: 84vw;
         }
+        .menu {
+          display: none;
+        }
     </style>
 </head>
 <body>
+  <div class="menu" id="main-menu">
+    <button id="main-menu-start">Start</button>
+  </div>
+  <div class="menu" id="pause-menu">
+    <button id="pause-menu-resume">Resume</button>
+  </div>
+  <div class="menu" id="game-menu">
+    <button id="game-menu-pause">Pause</button>
+  </div>
+
 
 <!--Include Scripts-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
 <script  src="js/loader.js" type="module"></script>
 </body>
 </html>
