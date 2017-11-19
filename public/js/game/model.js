@@ -3,6 +3,7 @@ import { UnitList } from "/js/objects/unitList.js"
 import { Unit } from "/js/objects/unit.js"
 import { Creep } from "/js/objects/creep.js"
 import { CreepList } from "/js/objects/creepList.js"
+import { ControlModule } from "/js/game/io/control.js"
 
 let Model = function(){
     let that = {},
@@ -11,6 +12,21 @@ let Model = function(){
         playerUnits = [],
         creeps = [],
         logicalMap;
+
+
+    that.initCommands = function () {
+      ControlModule.onMoveCommand((data) => {
+        let name = data.name;
+        let position = logicalMap.gridToPixel(data.col + "" + data.row);
+        // ???.move({ // TODO move guy
+        //   name: name,
+        //   position: {
+        //     x: position[0],
+        //     y: position[1]
+        //   }
+        // );
+      });
+    };
 
     that.init = function(logicModel){
         //graphics = g;
@@ -35,6 +51,8 @@ let Model = function(){
         let myCreep = CreepList["scout"];
         creeps.push(Creep({creep: myCreep, position:{x:23.0 * 128 + 64, y: 22.0 * 128 + 64}, direction: {x: -1, y: -1}}))
         creeps[0].init();
+
+        that.initCommands();
     }
 
     that.gameOver = function(){ return false; }
