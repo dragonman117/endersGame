@@ -1,4 +1,6 @@
 import { Model } from "/js/game/model.js"
+import { KeyboardInputModule} from "/js/game/io/keyboard.js";
+import { SoundsModule } from "/js/game/io/sounds.js";
 
 let Game = (function(){
     let that = {},
@@ -9,6 +11,16 @@ let Game = (function(){
         model = new Model();
         model.init(logicModel);
         lastTime = performance.now();
+        KeyboardInputModule.motivate.onStartTransmission(() => {
+            annyang.start();
+            console.log("m")
+            SoundsModule.makeStatic();
+        });
+
+        KeyboardInputModule.motivate.onEndTransmission(() => {
+            console.log("m STOP")
+            annyang.abort();
+        });
     }
 
     that.gameLoop = function(time){

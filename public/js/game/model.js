@@ -17,6 +17,7 @@ let Model = function(){
     that.initCommands = function () {
       ControlModule.onMoveCommand((data) => {
         let name = data.name;
+        console.log(data);
         let position = logicalMap.gridToPixel(data.col + "" + data.row);
         Commands.move(
           {
@@ -31,6 +32,7 @@ let Model = function(){
       });
 
       ControlModule.onSetUnitNameEvent((data) => {
+          console.log(data);
         Commands.setName(
           {
             name: data.name,
@@ -41,6 +43,7 @@ let Model = function(){
       });
 
       ControlModule.onPlaceUnitEvent((data) => {
+          console.log(data);
         let position = logicalMap.gridToPixel(data.col + "" + data.row);
         Commands.createUnit(
           {
@@ -65,7 +68,7 @@ let Model = function(){
         let myUnit = UnitList["scout"];
         myUnit.position = { x: 24.0 * 128 + 64, y: 2.0 * 128 + 64};
         myUnit.direction = { x: 1, y: 0};
-        myUnit.unitName = "Josh";
+        myUnit.unitName = "JOSH";
 
         unitList.push(Unit(myUnit));
         myUnit.direction = { x: 2, y: -1};
@@ -78,8 +81,8 @@ let Model = function(){
         unitList[1].init();
 
         let myCreep = CreepList["scout"];
-        creepsList.push(Creep({creep: myCreep, position:{x:23.0 * 128 + 64, y: 22.0 * 128 + 64}, direction: {x: -1, y: -1}}))
-        creepsList[0].init();
+        creepList.push(Creep({creep: myCreep, position:{x:23.0 * 128 + 64, y: 22.0 * 128 + 64}, direction: {x: -1, y: -1}}))
+        creepList[0].init();
 
         that.initCommands();
     }
@@ -90,8 +93,8 @@ let Model = function(){
         for(let i = 0; i < unitList.length; i++){
             unitList[i].update(elapsedTime)
         }
-        for(let i = 0; i < creepsList.length; i++){
-            creepsList[i].update(elapsedTime)
+        for(let i = 0; i < creepList.length; i++){
+            creepList[i].update(elapsedTime)
         }
     }
 

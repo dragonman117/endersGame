@@ -10,6 +10,7 @@ export const ControlModule = (() => {
   if (annyang) {
     const commands = {
       "*name go to :col :row": (name, col, row) => {
+          console.log(name, col, row);
         moveUnitEvent.notifySubscribers({
           name: name.toUpperCase(),
           col: col.toUpperCase(),
@@ -17,6 +18,7 @@ export const ControlModule = (() => {
         });
       },
       "place *unit at :row :col": (unit, row, col) => {
+          console.log(name, col, row);
         placeUnitEvent.notifySubscribers({
           unit: unit.toUpperCase(),
           row: row.toUpperCase(),
