@@ -18,7 +18,7 @@ import {Base} from "/js/game/base.js"
 let Unit = function(spec){
     let that = {},
         speed = spec.speed,
-        status = [],
+        status = ["notMoving"],
         destination,
         base = Base({
             position: spec.position,
@@ -49,6 +49,9 @@ let Unit = function(spec){
 
     that.setDestination = function(dest){
         destination = dest;
+        for(let i = 0; i < status.length; i++){
+            if(status[i] === "notMoving") status[i] = "moving";
+        }
         that.changeDirection(dest);
     }
 
@@ -66,9 +69,9 @@ let Unit = function(spec){
 
     that.isDead = function(){ return base.isDead(); }
 
-    that.setName = function(){ base.setName(); }
+    that.setName = function(name){ base.setName(name); }
 
-    that.getName = function(){ base.getName(); }
+    that.getName = function(){ return base.getName(); }
 
     return that;
 };

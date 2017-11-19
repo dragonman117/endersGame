@@ -19,7 +19,7 @@ let Model = function(){
         let name = data.name;
         console.log(data);
         let position = logicalMap.gridToPixel(data.col + "" + data.row);
-        Commands.move(
+        command.move(
           {
             name: name,
             position: {
@@ -33,7 +33,7 @@ let Model = function(){
 
       ControlModule.onSetUnitNameEvent((data) => {
           console.log(data);
-        Commands.setName(
+        command.setName(
           {
             name: data.name,
             newName: data.newName
@@ -45,7 +45,7 @@ let Model = function(){
       ControlModule.onPlaceUnitEvent((data) => {
           console.log(data);
         let position = logicalMap.gridToPixel(data.col + "" + data.row);
-        Commands.createUnit(
+        command.createUnit(
           {
             name: data.name,
             position: {

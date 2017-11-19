@@ -100,7 +100,7 @@ let Graphics = new function () {
     };
 
     that.getLogical = function () {
-        return app.stage.logical;
+        return app.stage.getLogical();
     };
 
     return that;

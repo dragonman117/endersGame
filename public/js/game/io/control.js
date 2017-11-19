@@ -11,12 +11,24 @@ export const ControlModule = (() => {
     const commands = {
       "*name go to :col :row": (name, col, row) => {
           console.log(name, col, row);
+          col = WordParserModule.parseToCharacter(col.toUpperCase());
+          if(col === undefined) return;
         moveUnitEvent.notifySubscribers({
           name: name.toUpperCase(),
           col: col.toUpperCase(),
           row: WordParserModule.parseToInteger(row.toLowerCase())
         });
       },
+        "*name move to :col :row": (name, col, row) => {
+            console.log(name, col, row);
+            col = WordParserModule.parseToCharacter(col.toUpperCase());
+            if(col === undefined) return;
+            moveUnitEvent.notifySubscribers({
+                name: name.toUpperCase(),
+                col: col.toUpperCase(),
+                row: WordParserModule.parseToInteger(row.toLowerCase())
+            });
+        },
       "place *unit at :row :col": (unit, row, col) => {
           console.log(name, col, row);
         placeUnitEvent.notifySubscribers({
@@ -26,7 +38,7 @@ export const ControlModule = (() => {
         });
       },
       "Hey *name I'm going to call you *newName": (name, newName) => {
-        setUnitNametEvent.notifySubscribers({
+        setUnitNameEvent.notifySubscribers({
           name: name.toUpperCase(),
           newName: newName.toUpperCase()
         });

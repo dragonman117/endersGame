@@ -3,8 +3,8 @@ let Map = function (logical, levelName) {
     let logicalRepresentation = logical;
     let level = PIXI.loader.resources[levelName].data;
     //offsets from 0,0 for the board
-    let xOffset = 1408;
-    let yOffset = 128;
+    let xOffset = 1344;
+    let yOffset = 64;
     let openentGates;
     let playerGates;
 

@@ -71,13 +71,38 @@ export const WordParserModule = (() => {
     "twenty": 20,
   };
 
+  const charMap = {
+    "DEE": "D",
+      "SEE": "C",
+      "PEE": "P",
+      "JAY": "J",
+      "JAIL": "J",
+      "KAY": "K",
+      "EL": "L",
+      "OUR": "R",
+      "ARE": "R",
+      "SEA": "C",
+      "GO": "O",
+      "OH": "O",
+      "YOU": "U",
+      "TEE": "T",
+      "TEA": "T",
+      "WHY": "Y"
+  }
+
   function parseToInteger(num) {
     let n = parseInt(num);
     console.log(num)
     return isNaN(n) ? numberMap[num] : n;
   }
 
+  function parseToCharacter(val) {
+    if(val.length > 1) return charMap[val];
+    else return val;
+  }
+
   return {
+    parseToCharacter: parseToCharacter,
     parseToInteger: parseToInteger,
     findClosestWord: findClosestWord,
     editDistance: editDistance

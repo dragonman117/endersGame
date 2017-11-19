@@ -5,7 +5,9 @@ let Commands = function(){
 
     function getUnit(nickname, unitList){
         for(let i = 0; i < unitList.length; i++){
-            if(unitList[i].getName() === nickname) return unitList[i];
+            let name = unitList[i].getName()
+            console.log(name)
+            if(name === nickname) return unitList[i];
         }
         return null;
     }
@@ -18,6 +20,8 @@ let Commands = function(){
     }
 
     function move(commandArgs, unitList){
+        console.log(commandArgs)
+        console.log(unitList)
         let unit = getUnit(commandArgs.name, unitList);
         unit.setDestination(commandArgs.position);
     }
@@ -40,6 +44,12 @@ let Commands = function(){
 
         unitList.push(Unit(myUnit));
         return unitList;
+    }
+
+    return {
+        move: move,
+        createUnit: createUnit,
+        setName: setName
     }
 
 }
