@@ -71,6 +71,27 @@ export const WordParserModule = (() => {
     "twenty": 20,
   };
 
+
+  const numberMap = {
+      "SEE": "C",
+      "DEE": "D",
+      "GEE": "G",
+      "JAY": "J",
+      "GO": "O",
+      "OH": "O",
+      "PEE": "P",
+      "ARE": "R",
+      "": 7,
+      "eight": 8,
+      "ate": 8,
+      "nine": 9,
+      "ten": 10,
+      "tan": 10,
+      "eleven": 11,
+      "twelve": 12,
+      "twenty": 20,
+  };
+
   function parseToInteger(num) {
     let n = parseInt(num);
     console.log(num)

@@ -18,7 +18,7 @@ import {Base} from "/js/game/base.js"
 let Unit = function(spec){
     let that = {},
         speed = spec.speed,
-        status = [],
+        status = ["notMoving"],
         destination,
         base = Base({
             position: spec.position,
