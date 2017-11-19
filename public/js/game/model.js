@@ -67,19 +67,19 @@ let Model = function(){
         myUnit.direction = { x: 1, y: 0};
         myUnit.unitName = "Josh";
 
-        playerUnits.push(Unit(myUnit));
+        unitList.push(Unit(myUnit));
         myUnit.direction = { x: 2, y: -1};
         myUnit.position = { x:24.0 * 128 +64, y: 3.0 * 128 + 64};
         myUnit.unitName = "TJ";
 
-        playerUnits.push(Unit(myUnit));
+        unitList.push(Unit(myUnit));
 
-        playerUnits[0].init();
-        playerUnits[1].init();
+        unitList[0].init();
+        unitList[1].init();
 
         let myCreep = CreepList["scout"];
-        creeps.push(Creep({creep: myCreep, position:{x:23.0 * 128 + 64, y: 22.0 * 128 + 64}, direction: {x: -1, y: -1}}))
-        creeps[0].init();
+        creepsList.push(Creep({creep: myCreep, position:{x:23.0 * 128 + 64, y: 22.0 * 128 + 64}, direction: {x: -1, y: -1}}))
+        creepsList[0].init();
 
         that.initCommands();
     }
@@ -87,11 +87,11 @@ let Model = function(){
     that.gameOver = function(){ return false; }
 
     that.update = function(elapsedTime){
-        for(let i = 0; i < playerUnits.length; i++){
-            playerUnits[i].update(elapsedTime)
+        for(let i = 0; i < unitList.length; i++){
+            unitList[i].update(elapsedTime)
         }
-        for(let i = 0; i < creeps.length; i++){
-            creeps[i].update(elapsedTime)
+        for(let i = 0; i < creepsList.length; i++){
+            creepsList[i].update(elapsedTime)
         }
     }
 
