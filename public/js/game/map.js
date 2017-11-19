@@ -36,9 +36,9 @@ let Map = function (logical, levelName) {
 
     let parseGate = function () {
         let gate = [];
-        for(let i = 0; i < level.opponentGate.length; i++){
+        for(let i = 0; i < level.oponentGate.length; i++){
             let specGate = {};
-            specGate.location = level.opponentGate[i];
+            specGate.location = level.oponentGate[i];
             specGate.path = level.creepPaths[i];
             specGate.spawn = level.creepSpawns[i];
             gate.push(specGate);
