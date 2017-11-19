@@ -78,8 +78,8 @@ let Model = function(){
         playerUnits[1].init();
 
         let myCreep = CreepList["scout"];
-        creeps.push(Creep({creep: myCreep, position:{x:23.0 * 128 + 64, y: 22.0 * 128 + 64}, direction: {x: -1, y: -1}}))
-        creeps[0].init();
+        creepsList.push(Creep({creep: myCreep, position:{x:23.0 * 128 + 64, y: 22.0 * 128 + 64}, direction: {x: -1, y: -1}}))
+        creepsList[0].init();
 
         that.initCommands();
     }
@@ -90,8 +90,8 @@ let Model = function(){
         for(let i = 0; i < playerUnits.length; i++){
             playerUnits[i].update(elapsedTime)
         }
-        for(let i = 0; i < creeps.length; i++){
-            creeps[i].update(elapsedTime)
+        for(let i = 0; i < creepsList.length; i++){
+            creepsList[i].update(elapsedTime)
         }
     }
 
