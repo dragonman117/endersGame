@@ -4,27 +4,29 @@ import {WordParserModule} from "./word-parser.js";
 
 export const ControlModule = (() => {
   const moveUnitEvent = createObservable();
+  const setUnitNameEvent = createObservable();
+  const placeUnitEvent = createObservable();
 
   if (annyang) {
     const commands = {
       "*name go to :col :row": (name, col, row) => {
         moveUnitEvent.notifySubscribers({
-          name: name,
-          col: col,
-          row: WordParserModule.parseToInteger(row)
+          name: name.toUpperCase(),
+          col: col.toUpperCase(),
+          row: WordParserModule.parseToInteger(row.toLowerCase())
         });
       },
       "place *unit at :row :col": (unit, row, col) => {
-        moveUnitEvent.notifySubscribers({
-          unit: unit,
-          row: row,
-          col: col
+        placeUnitEvent.notifySubscribers({
+          unit: unit.toUpperCase(),
+          row: row.toUpperCase(),
+          col: col.toUpperCase()
         });
       },
       "Hey *name I'm going to call you *newName": (name, newName) => {
-        moveUnitEvent.notifySubscribers({
-          name,
-          newName
+        setUnitNametEvent.notifySubscribers({
+          name: name.toUpperCase(),
+          newName: newName.toUpperCase()
         });
       }
     };
@@ -37,6 +39,8 @@ export const ControlModule = (() => {
   }
 
   return {
-    onMoveCommand: moveUnitEvent.subscribe
+    onMoveCommand: moveUnitEvent.subscribe,
+    onSetUnitNameEvent: setUnitNameEvent.subscribe,
+    onPlaceUnitEvent: placeUnitEvent.subscribe
   };
 })();

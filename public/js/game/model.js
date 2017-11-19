@@ -1,16 +1,16 @@
-import { Battlefield } from "/js/objects/battlefield.js"
 import { UnitList } from "/js/objects/unitList.js"
 import { Unit } from "/js/objects/unit.js"
 import { Creep } from "/js/objects/creep.js"
 import { CreepList } from "/js/objects/creepList.js"
 import { ControlModule } from "/js/game/io/control.js"
+import { Commands } from "/js/game/control.js"
 
 let Model = function(){
     let that = {},
-        graphics,
-        battlefield,
-        playerUnits = [],
-        creeps = [],
+        command,
+        unitList = [],
+        creepList = [],
+        towerList = [],
         logicalMap;
 
 
@@ -18,19 +18,48 @@ let Model = function(){
       ControlModule.onMoveCommand((data) => {
         let name = data.name;
         let position = logicalMap.gridToPixel(data.col + "" + data.row);
-        // ???.move({ // TODO move guy
-        //   name: name,
-        //   position: {
-        //     x: position[0],
-        //     y: position[1]
-        //   }
-        // );
+        Commands.move(
+          {
+            name: name,
+            position: {
+              x: position[0],
+              y: position[1]
+            }
+          },
+          unitList
+        );
       });
+
+      ControlModule.onSetUnitNameEvent((data) => {
+        Commands.setName(
+          {
+            name: data.name,
+            newName: data.newName
+          },
+          unitList
+        );
+      });
+
+      ControlModule.onPlaceUnitEvent((data) => {
+        let position = logicalMap.gridToPixel(data.col + "" + data.row);
+        Commands.createUnit(
+          {
+            name: data.name,
+            position: {
+              x: position[0],
+              y: position[1]
+            }
+          },
+          unitList
+        );
+      });
+
+
+
     };
 
     that.init = function(logicModel){
-        //graphics = g;
-        battlefield = Battlefield();
+         command = Commands();
         logicalMap = logicModel;
 
         let myUnit = UnitList["scout"];
