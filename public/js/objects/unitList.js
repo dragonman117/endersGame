@@ -25,6 +25,15 @@ let UnitList = {
         "attackSpeed": 1,
         "effects": {},
         "name": "scout"
+    },
+    "fighter": {
+        "speed": 5,
+        "health": 100,
+        "damage": 6,
+        "range": 250,
+        "attackSpeed": 1,
+        "effects": {},
+        "name": "fighter"
     }
 };
 

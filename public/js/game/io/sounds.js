@@ -1,6 +1,18 @@
 export const SoundsModule = (() => {
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
+  let errorSound = new Audio("/js/game/io/iCannotDoThat.ogg");
+
+  let confirmSound = new Audio("/js/game/io/okay.ogg");
+
+
+  function makeErrorSound(){
+    errorSound.play();
+  }
+
+  function makeConfirmSound(){
+    confirmSound.play();
+  }
 
   function makeStatic(length) {
     // Create an empty three-second stereo buffer at the sample rate of the AudioContext
@@ -45,6 +57,8 @@ export const SoundsModule = (() => {
   }
 
   return {
-    makeStatic
+    makeStatic,
+      makeErrorSound,
+      makeConfirmSound
   };
 })();

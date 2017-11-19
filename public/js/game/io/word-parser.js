@@ -40,12 +40,13 @@ export const WordParserModule = (() => {
 
   function findClosestWord(a, words) {
     let bestWord = words[0];
-    let bestdist = editDistance(a, words[0])
+    let bestDist = editDistance(a, words[0])
     for (let i = 1; i < words.length; i++) {
       let b = words[i];
       let dist = editDistance(a, b);
-      if (dist < bestdist) {
+      if (dist < bestDist) {
         bestWord = b;
+        bestDist = dist;
       }
     }
     return bestWord;
@@ -54,6 +55,8 @@ export const WordParserModule = (() => {
   const numberMap = {
     "one": 1,
     "two": 2,
+    "to": 2,
+    "too": 2,
     "three": 3,
     "four": 4,
     "for": 4,
@@ -74,6 +77,7 @@ export const WordParserModule = (() => {
   const charMap = {
     "DEE": "D",
       "SEE": "C",
+      "BE": "B",
       "PEE": "P",
       "JAY": "J",
       "JAIL": "J",
@@ -87,7 +91,8 @@ export const WordParserModule = (() => {
       "YOU": "U",
       "TEE": "T",
       "TEA": "T",
-      "WHY": "Y"
+      "WHY": "Y",
+      "AGE": "H"
   }
 
   function parseToInteger(num) {

@@ -1,5 +1,7 @@
 import {Base} from "/js/game/base.js"
 import {Unit} from "/js/objects/unit.js"
+import {UnitList} from "/js/objects/unitList.js"
+import {TowerList} from "/js/objects/towerList.js"
 
 let Commands = function(){
 
@@ -9,6 +11,10 @@ let Commands = function(){
             console.log(name)
             if(name === nickname) return unitList[i];
         }
+        // let idx = nickname.getIndexOf(" ");
+        // if(idx > 0){
+        //
+        // }
         return null;
     }
 
@@ -27,29 +33,36 @@ let Commands = function(){
     }
 
     function buildTower(commandArgs, towerList){
-        let tow = towerList[commandArgs.name]
-        tow.position = commandArgs.pos;
+        console.log(TowerList);
+        console.log(commandArgs);
+        let tow = TowerList[(commandArgs.tower).toLowerCase()]
+        console.log(tow)
+        tow.position = commandArgs.position;
         tow.direction = {x: 0, y: 1};
-        tow.unitName = commandArgs.name + " " + towerList.length;
+        tow.unitName = commandArgs.tower + " " + towerList.length;
         let tower = Base(tow)
         towerList.push(tower);
+        towerList[towerList.length - 1].init();
         return towerList;
     }
 
     function createUnit(commandArgs, unitList){
-        let myUnit = UnitList[commandArgs.name];
+        console.log(commandArgs);
+        let myUnit = UnitList[(commandArgs.unit).toLowerCase()];
         myUnit.position = commandArgs.position;
         myUnit.direction = { x: 1, y: 0};
-        myUnit.unitName = commandArgs.name + " " + unitList.length;
+        myUnit.unitName = commandArgs.name;
 
         unitList.push(Unit(myUnit));
+        unitList[unitList.length-1].init();
         return unitList;
     }
 
     return {
         move: move,
         createUnit: createUnit,
-        setName: setName
+        setName: setName,
+        buildTower: buildTower
     }
 
 }

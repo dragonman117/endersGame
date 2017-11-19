@@ -19,6 +19,7 @@ let Model = function(){
         let name = data.name;
         console.log(data);
         let position = logicalMap.gridToPixel(data.col + "" + data.row);
+        console.log(position)
         command.move(
           {
             name: name,
@@ -42,19 +43,39 @@ let Model = function(){
         );
       });
 
+      ControlModule.onBuildEvent((data) => {
+          console.log(data);
+          let position = logicalMap.gridToPixel(data.col + "" + data.row);
+          console.log(position)
+          towerList = command.buildTower(
+              {
+                  tower: data.tower,
+                  position: {
+                      x: position[0],
+                      y: position[1]
+                  }
+              },
+              towerList
+          );
+          console.log(towerList)
+      });
+
       ControlModule.onPlaceUnitEvent((data) => {
           console.log(data);
         let position = logicalMap.gridToPixel(data.col + "" + data.row);
-        command.createUnit(
+        console.log(position)
+        unitList = command.createUnit(
           {
-            name: data.name,
+            unit: data.unit,
             position: {
               x: position[0],
               y: position[1]
-            }
+            },
+              name: data.name
           },
           unitList
         );
+        console.log(unitList)
       });
 
 
